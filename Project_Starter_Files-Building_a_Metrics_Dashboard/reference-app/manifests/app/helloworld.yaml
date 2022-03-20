@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: hello-python
-        image: ghcr.io/thejaysmith/helloflask:v1
+        image: workshoft/observability-helloworld:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
