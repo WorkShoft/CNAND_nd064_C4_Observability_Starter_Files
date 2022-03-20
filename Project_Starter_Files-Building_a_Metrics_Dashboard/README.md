@@ -64,17 +64,19 @@ Sources:
 
 TROUBLE TICKET
 
-Name:
+Name: Degraded response time
 
-Date:
+Date: 2022-03-20
 
-Subject:
+Subject: Latency
 
-Affected Area:
+Affected Area: API
 
-Severity:
+Severity: Major
 
-Description:
+Description: Since release 1.2.11, 99th Percentile response time has nearly doubled from 92ms to 172ms. We must:
+- Find out and document the root cause.
+- Make the changes needed to meet our SLO of a 99th percentile response time below or equal to 100ms.
 
 
 ## Creating SLIs and SLOs
