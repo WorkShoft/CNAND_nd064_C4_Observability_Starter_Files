@@ -11,10 +11,44 @@
 ![Dashboard](answer-img/003.png)
 
 ## Describe SLO/SLI
-*TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
+Monthly uptime SLI: how often the application was running, and was able to respond to requests (regardless of response time).
+Request response time: the average time it takes endpoints to return a response after they are hit with a request.
 
 ## Creating SLI metrics.
-*TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+### CPU Usage
+CPU usage is one of the most classic performance metrics that can be a proxy to application responsiveness. High Server CPU usage can mean the server or virtual machine is oversubscribed and overloaded or it can mean a performance bug in your application such as too many spinlocks. Infrastructure engineers use CPU usage (along with its sister metric, memory percentage) for resource planning and measuring overall health. Certain types of applications like high bandwidth proxy services and API gateways naturally have higher CPU usage than other metrics along with workloads that involve heavy floating point math such as video encoding and machine learning workloads.
+
+Sources:
+- https://www.moesif.com/blog/technical/api-metrics/API-Metrics-That-Every-Platform-Team-Should-be-Tracking/
+- https://community.grafana.com/t/simple-cpu-usage-graph/41316
+
+### Average Memory Usage
+Average MB being used per second.
+
+Sources: 
+- https://ibm-cloud-architecture.github.io/b2m-nodejs/Prometheus-Grafana/#average-memory-usage
+- https://stackoverflow.com/questions/48835035/average-memory-usage-query-prometheus
+### Error Rate
+
+The rate of change of the amount of all of the requests that were not 5xx divided by the rate of change of the total amount of requests
+
+Source: https://www.metricfire.com/blog/understanding-the-prometheus-rate-function/
+
+### Median Response Time
+The median is the middle number in a sorted, ascending or descending, list of numbers and can be more descriptive of that data set than the average.
+
+Prometheus query: histogram_quantile(0.5, sum(rate(http_request_duration_ms_bucket[1m])) by (le, service, route, method))
+
+Source: https://ibm-cloud-architecture.github.io/b2m-nodejs/Prometheus-Grafana/#median-response-time
+
+### 99th percentile response time
+If the 99th Percentile response time is 100ms, then out of 100 requests, 1 request took the max response time of 100 ms.
+
+Prometheus query: histogram_quantile(0.99, sum(rate(http_request_duration_ms_bucket[1m])) by (le, service, route, method))
+
+Sources:
+- https://theflyingmantis.medium.com/what-is-99th-percentile-response-time-f23c09c3b54a
+- https://ibm-cloud-architecture.github.io/b2m-nodejs/Prometheus-Grafana/#95th-response-time
 
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
