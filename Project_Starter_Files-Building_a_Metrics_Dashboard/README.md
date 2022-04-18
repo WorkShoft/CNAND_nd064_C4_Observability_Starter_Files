@@ -55,10 +55,10 @@ Sources:
 
 ## Tracing our Flask App
 ![Jaeger Span Code](answer-img/jaeger_exporter.png)
-![Jaeger Grafana Span](answer-img/cpuutilisation.png)
+![Jaeger Grafana Span](answer-img/jaeger-query.png)
 
 ## Jaeger in Dashboards
-(answer-img/cpuutilisation.png)
+![](answer-img/jaeger-query-dashboard.png)
 
 ## Report Error
 TROUBLE TICKET
@@ -98,4 +98,4 @@ Sources:
 - https://stackoverflow.com/questions/58080200/how-to-get-overall-uptime-of-a-server-with-prometheus-and-node-exporter
 
 ## Final Dashboard
-*TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+![](answer-img/metrics.png)
