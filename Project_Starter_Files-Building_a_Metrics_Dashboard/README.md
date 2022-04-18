@@ -51,17 +51,16 @@ Sources:
 - https://ibm-cloud-architecture.github.io/b2m-nodejs/Prometheus-Grafana/#95th-response-time
 
 ## Create a Dashboard to measure our SLIs
-*TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
+![Grafana Home Page](answer-img/cpuutilisation.png)
 
 ## Tracing our Flask App
-*TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
+![Jaeger Span Code](answer-img/jaeger_exporter.png)
+![Jaeger Grafana Span](answer-img/cpuutilisation.png)
 
 ## Jaeger in Dashboards
-*TODO:* Now that the trace is running, let's add the metric to our current Grafana dashboard. Once this is completed, provide a screenshot of it here.
+(answer-img/cpuutilisation.png)
 
 ## Report Error
-*TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
-
 TROUBLE TICKET
 
 Name: Degraded response time
@@ -82,8 +81,21 @@ Description: Since release 1.2.11, 99th Percentile response time has nearly doub
 ## Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
 
+1. Uptime (availability) - what percent of requests are returned without error
+2. Median 50th Percentile Latency
+3. Median 90th Percentile Latency
+4. Median 99th Percentile Latency
+
+Source: https://emmer.dev/blog/slis-slos-and-slas-what-are-they/
+
 ## Building KPIs for our plan
-*TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
+1. Uptime: 100*avg_over_time(up{job="some_job"}[4w])
+2. Downtime: 100-100*avg_over_time(up{job="some_job"}[4w])
+
+Sources:
+- https://www.ibm.com/docs/en/cloud-private/3.1.2?topic=apis-prometheus-api
+- https://stackoverflow.com/questions/65620289/how-to-get-up-metric-count-0-for-last-week-from-prometheus
+- https://stackoverflow.com/questions/58080200/how-to-get-overall-uptime-of-a-server-with-prometheus-and-node-exporter
 
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
