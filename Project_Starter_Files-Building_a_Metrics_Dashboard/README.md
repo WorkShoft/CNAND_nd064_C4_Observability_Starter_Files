@@ -81,16 +81,25 @@ Description: Since release 1.2.11, 99th Percentile response time has nearly doub
 ## Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
 
+### SLO
 1. Uptime (availability) - what percent of requests are returned without error
-2. Median 50th Percentile Latency
-3. Median 90th Percentile Latency
-4. Median 99th Percentile Latency
+2. Median 50th Percentile Latency is below 3 seconds
+3. Median 90th Percentile Latency is below 2 seconds
+4. Median 99th Percentile Latency is below 1 seconds
+
+### SLI
+1. Uptime (availability) - 100*avg_over_time(up{job="some_job"}[4w])
+2. histogram_quantile(0.50, sum(rate(nginx_request_time_bucket[4w])) by (le))
+3. histogram_quantile(0.90, sum(rate(nginx_request_time_bucket[4w])) by (le))
+4. histogram_quantile(0.99, sum(rate(nginx_request_time_bucket[4w])) by (le))
 
 Source: https://emmer.dev/blog/slis-slos-and-slas-what-are-they/
 
 ## Building KPIs for our plan
-1. Uptime: 100*avg_over_time(up{job="some_job"}[4w])
-2. Downtime: 100-100*avg_over_time(up{job="some_job"}[4w])
+1. Uptime (availability) - percentage of requests that have been returned without error in the previous 4 weeks
+2. Median 50th Percentile Latency in the previous 4 weeks
+3. Median 90th Percentile Latency in the previous 4 weeks
+4. Median 99th Percentile Latency in the previous 4 weeks
 
 Sources:
 - https://www.ibm.com/docs/en/cloud-private/3.1.2?topic=apis-prometheus-api
