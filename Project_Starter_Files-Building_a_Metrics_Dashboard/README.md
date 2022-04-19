@@ -2,13 +2,13 @@
 
 ## Verify the monitoring installation
 
-![Installation](answer-img/001.png)
+![Installation](answer-img/kubectl_get_pods_all_namespaces.png)
 
 ## Setup the Jaeger and Prometheus source
 ![Graphana Home Page](answer-img/002.png)
 
 ## Create a Basic Dashboard
-![Dashboard](answer-img/003.png)
+![Dashboard](answer-img/prometheus_data_source.png)
 
 ## Describe SLO/SLI
 Monthly uptime SLI: how often the application was running, and was able to respond to requests (regardless of response time).
